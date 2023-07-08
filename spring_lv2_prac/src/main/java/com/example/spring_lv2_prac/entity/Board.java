@@ -1,6 +1,7 @@
 package com.example.spring_lv2_prac.entity;
 
 import com.example.spring_lv2_prac.dto.BoardRequestDto;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
