@@ -24,7 +24,7 @@ public class BoardController {
     @PostMapping("")
     public BoardResponseDto creatBoard(@RequestBody BoardRequestDto requestDto, HttpServletRequest request) {
         User user = (User) request.getAttribute("user");
-        return boardService.createBoard(requestDto, user);//
+        return boardService.createBoard(requestDto, user);
     }
 
     // 게시글 전체조회
