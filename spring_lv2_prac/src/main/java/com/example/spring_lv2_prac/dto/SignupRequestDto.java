@@ -11,7 +11,7 @@ import lombok.Setter;
 public class SignupRequestDto {
     @NotBlank
     @Size(min = 4, max = 10)
-    @Pattern(regexp = "^[0-a-z9]+$")
+    @Pattern(regexp = "^[0-9a-z]+$")
     private String username;
 
     @NotBlank

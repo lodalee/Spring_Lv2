@@ -1,6 +1,7 @@
 package com.example.spring_lv2_prac.dto;
 
 import com.example.spring_lv2_prac.entity.Board;
+import com.example.spring_lv2_prac.entity.Comment;
 import lombok.Getter;
 
 import java.time.LocalDateTime;

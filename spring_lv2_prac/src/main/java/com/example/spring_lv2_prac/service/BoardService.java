@@ -54,7 +54,7 @@ public class BoardService {
     }
 
     // 삭제
-    public Long deleteMemo(Long id, User user) {
+    public void deleteMemo(Long id, User user) {
         // 해당 메모가 DB에 존재하는지 확인
         Board board = findBoard(id);
         if (!(board.getUsername().equals(user.getUsername()))){
@@ -62,7 +62,6 @@ public class BoardService {
         }
         // board 삭제할 게시글
         boardRepository.delete(board);
-        return id;
     }
 
     private Board findBoard(Long id) {

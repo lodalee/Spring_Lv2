@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter @Setter
@@ -26,6 +28,10 @@ public class Board extends Timestamped {
     @Column(name = "contents", nullable = false, length = 500)
     private String contents;            // 작성 내용
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "board")
+    private List<Comment> commentList = new ArrayList<>();
+
 
 
 
@@ -42,7 +48,4 @@ public class Board extends Timestamped {
         this.title = requestDto.getTitle();
         this.contents = requestDto.getContents();
     }
-
-
-
 }
