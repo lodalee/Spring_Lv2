@@ -30,7 +30,7 @@ public class Board extends Timestamped {
     private String contents;            // 작성 내용
 
     @JsonIgnore
-    @OneToMany(mappedBy = "board")
+    @OneToMany(mappedBy = "board", cascade = {CascadeType.REMOVE})
     private List<Comment> commentList = new ArrayList<>();
 
 

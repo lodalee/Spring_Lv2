@@ -5,6 +5,7 @@ import com.example.spring_lv2_prac.dto.BoardResponseDto;
 import com.example.spring_lv2_prac.entity.Board;
 import com.example.spring_lv2_prac.entity.User;
 import com.example.spring_lv2_prac.repository.BoardRepository;
+import com.example.spring_lv2_prac.repository.CommentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,6 +17,8 @@ import java.util.List;
 public class BoardService {
 
     private final BoardRepository boardRepository;
+//    private final CommentRepository commentRepository;
+
 
     // 생성 필터에서 토큰을 검사해 가져오기 때문에 따로 구현x
     public BoardResponseDto createBoard(BoardRequestDto requestDto, User user) {
@@ -54,13 +57,23 @@ public class BoardService {
     }
 
     // 삭제
+    @Transactional
     public void deleteMemo(Long id, User user) {
         // 해당 메모가 DB에 존재하는지 확인
         Board board = findBoard(id);
         if (!(board.getUsername().equals(user.getUsername()))){
-            throw new IllegalArgumentException("작성자만 삭제할 수 있습니다. ");
+            throw new IllegalArgumentException("작성자만 삭제할 수 있습니다.");
         }
-        // board 삭제할 게시글
+
+//        //board 에 달린 댓글 조회
+//        for (Comment comment : board.getCommentList()){
+//            System.out.println("comment.getName() = " + comment.getComment());
+//        }
+//
+//        //해당 board 댓글 데이터 삭제
+//        commentRepository.deleteAll(board.getCommentList());
+
+        // board 삭제
         boardRepository.delete(board);
     }
 
