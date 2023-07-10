@@ -40,8 +40,8 @@ public class CommentService {
                 new IllegalArgumentException("존재하지 않는 Comment 입니다.")
                 );
         //comment의 유저네임이 user의 유저네임과 같은지
-        if (!(comment.getUsername().equals(user.getUsername()))){
-            throw new IllegalArgumentException("작성자만 수정할 수 있습니다.");
+        if (!(comment.getUsername().equals(user.getUsername())) && !(user.getRole().getAuthority().equals("ROLE_ADMIN"))){
+            throw new IllegalArgumentException("작성자와 관리자만 수정할 수 있습니다.");
         }
         //comment 내용을 수정하고 수정된 게시물을 클라이언트로
         comment.update(requestDto);
@@ -55,8 +55,8 @@ public class CommentService {
                 new IllegalArgumentException("존재하지 않는 Comment 입니다.")
         );
         //comment의 유저네임이 user의 유저네임과 같은지
-        if (!(comment.getUsername().equals(user.getUsername()))){
-            throw new IllegalArgumentException("작성자만 삭제할 수 있습니다.");
+        if (!(comment.getUsername().equals(user.getUsername())) && !(user.getRole().getAuthority().equals("ROLE_ADMIN"))){
+            throw new IllegalArgumentException("작성자와 관리자만 삭제할 수 있습니다.");
         }
         //comment 삭제
         commentRepository.delete(comment);

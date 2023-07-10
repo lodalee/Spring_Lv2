@@ -48,8 +48,9 @@ public class BoardService {
     public BoardResponseDto updateBoard(Long id, BoardRequestDto requestDto, User user) {
         // 해당 게시글이 DB에 존재하는지 확인
         Board board = findBoard(id);
-        if (!(board.getUsername().equals(user.getUsername()))){
-            throw new IllegalArgumentException("작성자만 수정할 수 있습니다.");
+
+        if (!(board.getUsername().equals(user.getUsername())) && !(user.getRole().getAuthority().equals("ROLE_ADMIN"))){
+            throw new IllegalArgumentException("작성자와 관리자만 수정할 수 있습니다.");
         }
         // board 내용 수정 제목, 작성 내용을 수정하고 수정된 게시물 클라이언트로
         board.update(requestDto);
@@ -61,8 +62,8 @@ public class BoardService {
     public void deleteMemo(Long id, User user) {
         // 해당 메모가 DB에 존재하는지 확인
         Board board = findBoard(id);
-        if (!(board.getUsername().equals(user.getUsername()))){
-            throw new IllegalArgumentException("작성자만 삭제할 수 있습니다.");
+        if (!(board.getUsername().equals(user.getUsername())) && !(user.getRole().getAuthority().equals("ROLE_ADMIN"))){
+            throw new IllegalArgumentException("작성자와 관리자만 삭제할 수 있습니다.");
         }
 
 //        //board 에 달린 댓글 조회
