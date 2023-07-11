@@ -16,9 +16,11 @@ public class SignupRequestDto {
 
     @NotBlank
     @Size(min = 8, max = 15)
-    @Pattern(regexp = "^[A-Za-z0-9]+$")
+    @Pattern(regexp = "^[A-Za-z0-9!@#$%^&*()_-]+$")
     private String password;
 
     private boolean admin = false;
     private String adminToken = "";
+
+//    "^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[@#$%^&+=]).*$"
 }

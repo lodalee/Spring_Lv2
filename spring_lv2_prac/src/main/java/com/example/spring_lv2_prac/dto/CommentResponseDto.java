@@ -10,6 +10,7 @@ public class CommentResponseDto {
     private String comment; // 댓글 내용
     private LocalDateTime createdAt; // 작성 시간
 
+
     public CommentResponseDto(Comment newComment) {
         this.username = newComment.getUsername();
         this.comment = newComment.getComment();
